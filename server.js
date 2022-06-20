@@ -77,8 +77,8 @@ if(args.modo === 'CLUSTER' && cluster.isPrimary){
         cluster.fork();
     });
 }else{
-    httpserver.listen(args.puerto, () => {
-        console.log(`proceso ${process.pid} corriendo en el puerto ${args.puerto}`);
+    httpserver.listen(process.env.PORT, () => {
+        console.log(`proceso ${process.pid} corriendo en el puerto ${process.env.PORT}`);
     });   
     console.log(`worker ${process.pid} is running`);
 }
