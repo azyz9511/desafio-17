@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const cpus = require('os').cpus().length;
+const PORT = process.env.PORT || 8080;
 const compression = require('compression');
 
 router.get('/',compression(), (req, res) => {
@@ -12,7 +13,7 @@ router.get('/',compression(), (req, res) => {
     // console.log(`Process ID: ${process.pid}`);
     // console.log(`Carpeta del proyecto: ${process.cwd()}`);
     // console.log(`Cantidad de CPUs: ${cpus}`);
-    res.render('pages/info',{cpus});
+    res.render('pages/info',{cpus,PORT});
 });
 
 module.exports = router;

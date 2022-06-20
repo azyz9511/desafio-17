@@ -6,6 +6,7 @@ const yargs = require('yargs/yargs')(process.argv.slice(2))
 const args = yargs.default({ puerto:8080, modo:'FORK' }).argv;
 const cpus = require('os').cpus().length;
 const cluster = require('cluster');
+const PORT = process.env.PORT || 8080;
 
 // importacion e instancia de la clase Chat
 const Chat = require('./js/chat');
@@ -77,8 +78,8 @@ if(args.modo === 'CLUSTER' && cluster.isPrimary){
         cluster.fork();
     });
 }else{
-    httpserver.listen(process.env.PORT, () => {
-        console.log(`proceso ${process.pid} corriendo en el puerto ${process.env.PORT}`);
+    httpserver.listen(PORT, () => {
+        console.log(`proceso ${process.pid} corriendo en el puerto ${PORT}`);
     });   
     console.log(`worker ${process.pid} is running`);
 }
